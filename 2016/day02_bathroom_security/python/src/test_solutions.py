@@ -1,7 +1,7 @@
 """Tests."""
 
 
-from solution1 import Keypad, Urinator
+from common import ThreeByThreeKeypad, Urinator
 
 
 class TestClass1:
@@ -9,7 +9,7 @@ class TestClass1:
 
     def test_that_i_know_what_a_keypad_looks_like(self):
         """."""
-        kp = Keypad()
+        kp = ThreeByThreeKeypad()
         assert(kp.center.number == 5)
 
         assert(kp.center.up.number == 2)
@@ -66,5 +66,5 @@ class TestClass1:
 RRDDD
 LURDL
 UUUUD"""
-        urinator = Urinator(Keypad(), sample_input.lower().split("\n"))
+        urinator = Urinator(ThreeByThreeKeypad(), sample_input.lower().split("\n"))
         assert(urinator.find_code() == '1985')
