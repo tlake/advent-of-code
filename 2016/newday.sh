@@ -14,6 +14,10 @@ if [ "${1+defined}" ]; then
     echo ">>> Setting up Python directory";
     mkdir $1/python;
     virtualenv -p python3.5 $1/python/env;
+    cd $1/python/env/;
+    act;
+    cd -;
+    pip install ipython pytest-cov
     mkdir $1/python/src;
     touch $1/python/src/input.txt;
     cp templates/python_solution.template $1/python/src/solution1.py;
@@ -21,4 +25,5 @@ if [ "${1+defined}" ]; then
     chmod +x $1/python/src/solution*;
     cp templates/python_common.template $1/python/src/common.py;
     touch $1/python/src/test_solutions.py;
+    deactivate;
 fi
