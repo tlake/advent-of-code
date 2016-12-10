@@ -14,9 +14,7 @@ if [ "${1+defined}" ]; then
     echo ">>> Setting up Python directory";
     mkdir $1/python;
     virtualenv -p python3.5 $1/python/env;
-    cd $1/python/env/;
-    act;
-    cd -;
+    source $1/python/env/bin/activate;
     pip install ipython pytest-cov
     mkdir $1/python/src;
     touch $1/python/src/input.txt;
