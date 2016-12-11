@@ -1,7 +1,7 @@
 """Taxicab tests."""
 
-from taxicab_part1 import Walker as Walker1
-from taxicab_part2 import Walker as Walker2
+from part1 import Walker as Walker1
+from part2 import Walker as Walker2
 
 
 class TestPart1:
