@@ -14,4 +14,4 @@ class ClassName:
 
 if __name__ == "__main__":
     thing = ClassName(get_input)
-    print thing.method()
+    print(thing.method())

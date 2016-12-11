@@ -2,7 +2,7 @@
 import pytest
 
 from part1 import something as something1
-from part2 import something as something2
+# from part2 import something as something2
 
 
 class TestPart1UnitTests:
@@ -16,12 +16,12 @@ class TestPart1UnitTests:
         pass
 
 
-class TestPart2UnitTests:
-    """."""
-
-    @pytest.mark.parametrize("test_input, expected", [
-        ('input', 'expect'),
-    ])
-    def test_something(self, test_input, expected):
-        """."""
-        pass
+# class TestPart2UnitTests:
+#     """."""
+#
+#     @pytest.mark.parametrize("test_input, expected", [
+#         ('input', 'expect'),
+#     ])
+#     def test_something(self, test_input, expected):
+#         """."""
+#         pass
