@@ -20,7 +20,7 @@ if [ "${1+defined}" ]; then
     touch $1/python/src/input.txt;
     cp templates/python_solution.template $1/python/src/part1.py;
     cp templates/python_solution.template $1/python/src/part2.py;
-    chmod +x $1/python/src/solution*;
+    chmod +x $1/python/src/part*;
     cp templates/python_common.template $1/python/src/common.py;
     cp templates/python_tests.template $1/python/src/test_solutions.py;
     deactivate;
