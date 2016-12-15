@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+"""Docstring."""
+
+from common import get_input
+
+
+class ClassName:
+    """."""
+
+    def __init__(self):
+        """Initialize."""
+        pass
+
+
+if __name__ == "__main__":
+    thing = ClassName(get_input)
+    print(thing.method())

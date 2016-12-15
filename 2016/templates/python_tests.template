@@ -11,7 +11,7 @@ class TestPart1UnitTests:
     @pytest.mark.parametrize("test_input, expected", [
         ('input', 'expect'),
     ])
-    def test_something(self, test_input, expected):
+    def test_method(self, test_input, expected):
         """."""
         pass
 
@@ -22,6 +22,6 @@ class TestPart1UnitTests:
 #     @pytest.mark.parametrize("test_input, expected", [
 #         ('input', 'expect'),
 #     ])
-#     def test_something(self, test_input, expected):
+#     def test_method(self, test_input, expected):
 #         """."""
 #         pass
