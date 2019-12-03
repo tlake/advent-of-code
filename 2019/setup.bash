@@ -11,7 +11,7 @@ PROJECT_NAME=$1
 
 REPO_NAME="github.com/tlake/adventofcode2019"
 
-ADVENT_LOCATION="${HOME}/code/projects/go/adventofcode2019"
+ADVENT_LOCATION=$(pwd)
 PROJECT_LOCATION="${ADVENT_LOCATION}/${PROJECT_NAME}"
 
 # create directories
