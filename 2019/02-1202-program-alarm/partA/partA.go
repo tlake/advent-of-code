@@ -1,6 +1,6 @@
 package partA
 
-import "github.com/tlake/adventofcode2019/2-1202-program-alarm/common"
+import "github.com/tlake/adventofcode2019/02-1202-program-alarm/common"
 
 func Run(codeString string) int {
 	// before running the program:

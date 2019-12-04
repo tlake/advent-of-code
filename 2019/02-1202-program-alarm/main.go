@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/tlake/adventofcode2019/2-1202-program-alarm/common"
-	"github.com/tlake/adventofcode2019/2-1202-program-alarm/partA"
-	"github.com/tlake/adventofcode2019/2-1202-program-alarm/partB"
+	"github.com/tlake/adventofcode2019/02-1202-program-alarm/common"
+	"github.com/tlake/adventofcode2019/02-1202-program-alarm/partA"
+	"github.com/tlake/adventofcode2019/02-1202-program-alarm/partB"
 )
 
 func main() {

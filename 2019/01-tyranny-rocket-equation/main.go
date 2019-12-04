@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/tlake/adventofcode2019/1-tyranny-rocket-equation/common"
-	"github.com/tlake/adventofcode2019/1-tyranny-rocket-equation/partA"
-	"github.com/tlake/adventofcode2019/1-tyranny-rocket-equation/partB"
+	"github.com/tlake/adventofcode2019/01-tyranny-rocket-equation/common"
+	"github.com/tlake/adventofcode2019/01-tyranny-rocket-equation/partA"
+	"github.com/tlake/adventofcode2019/01-tyranny-rocket-equation/partB"
 )
 
 func main() {

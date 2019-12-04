@@ -3,7 +3,7 @@ package partB
 import (
 	"sync"
 
-	"github.com/tlake/adventofcode2019/2-1202-program-alarm/common"
+	"github.com/tlake/adventofcode2019/02-1202-program-alarm/common"
 )
 
 type Pair struct {
