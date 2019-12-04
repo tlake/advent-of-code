@@ -21,7 +21,7 @@ func Run(input []string) int {
 
 	var successes []int
 	for pw := lowerBound; pw <= upperBound; pw++ {
-		result := common.PasswordMeetsCriteria(pw)
+		result := common.PasswordMeetsCriteriaA(pw)
 		if result {
 			successes = append(successes, pw)
 		}

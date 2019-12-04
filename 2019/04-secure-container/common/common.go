@@ -23,18 +23,14 @@ func GetInput() []string {
 	return lines
 }
 
-func PasswordMeetsCriteria(password int) bool {
-	var slice []int
-	for password != 0 {
-		slice = append([]int{password % 10}, slice...)
-		password = password / 10
-	}
+func PasswordMeetsCriteriaA(password int) bool {
+	slice := ConvertIntToIntSlice(password)
 
 	if success := LengthIsCorrect(slice); !success {
 		return false
 	}
 
-	if success := AdjacencyIsCorrect(slice); !success {
+	if success := HasAdjacentDuplicates(slice); !success {
 		return false
 	}
 
@@ -45,20 +41,71 @@ func PasswordMeetsCriteria(password int) bool {
 	return true
 }
 
+func PasswordMeetsCriteriaB(password int) bool {
+	slice := ConvertIntToIntSlice(password)
+
+	if success := LengthIsCorrect(slice); !success {
+		return false
+	}
+
+	if success := ContainsDouble(slice); !success {
+		return false
+	}
+
+	if success := NeverDecreases(slice); !success {
+		return false
+	}
+
+	return true
+}
+
+func ConvertIntToIntSlice(pw int) []int {
+	var slice []int
+	for pw != 0 {
+		slice = append([]int{pw % 10}, slice...)
+		pw = pw / 10
+	}
+
+	return slice
+}
+
 func LengthIsCorrect(pw []int) bool {
 	return len(pw) == 6
 }
 
-func AdjacencyIsCorrect(pw []int) bool {
+func HasAdjacentDuplicates(pw []int) bool {
 	var adjacencyFound bool
 
-	for i := 0; i < len(pw)-2; i++ {
+	for i := 0; i < len(pw)-1; i++ {
 		if pw[i] == pw[i+1] {
 			adjacencyFound = true
+			break
 		}
 	}
 
 	return adjacencyFound
+}
+
+func ContainsDouble(pw []int) bool {
+	var doubleFound bool
+
+	a, b := 0, 1
+	for a < len(pw)-1 {
+		for b < len(pw) && pw[a] == pw[b] {
+			b++
+		}
+
+		if len(pw[a:b]) == 2 {
+			doubleFound = true
+		}
+
+		if a < len(pw)-1 {
+			a = b
+			b = a + 1
+		}
+	}
+
+	return doubleFound
 }
 
 func NeverDecreases(pw []int) bool {
