@@ -83,16 +83,6 @@ func Run(input []string) int {
 }
 EOF
 
-	cat << EOF > ${part}/${part}_test.go ;
-package ${part}
-
-import "testing"
-
-func Test(t *testing.T) {
-
-}
-EOF
-
 done
 
 go mod tidy
