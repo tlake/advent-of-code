@@ -10,8 +10,10 @@ func Test_calculateFuelMassOnly(t *testing.T) {
 		100756: 33583,
 	}
 
+	solver := &Day1Solver{}
+
 	for input, output := range cases {
-		result := calculateFuelMassOnly(input)
+		result := solver.calculateFuelMassOnly(input)
 		if result != output {
 			t.Errorf("Given input of %d, expected %d but result was %d", input, output, result)
 		}
@@ -26,8 +28,10 @@ func Test_calculateFuelIncludingFuel(t *testing.T) {
 		100756: 50346,
 	}
 
+	solver := &Day1Solver{}
+
 	for input, output := range cases {
-		result := calculateFuelIncludingFuel(input)
+		result := solver.calculateFuelIncludingFuel(input)
 		if result != output {
 			t.Errorf("Given input of %d, expected %d but result was %d", input, output, result)
 		}

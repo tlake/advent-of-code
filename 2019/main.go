@@ -43,11 +43,7 @@ func GetCommands(adventClient *adventClient.AdventClient) []*cli.Command {
 
 				for i := 1; i <= len(adventClient.Puzzles); i++ {
 					key := fmt.Sprintf("day%d", i)
-					title, err := adventClient.Puzzles[key].GetTitle()
-					if err != nil {
-						return err
-					}
-
+					title := adventClient.Puzzles[key].GetTitle()
 					titles = append(titles, title)
 				}
 
@@ -70,11 +66,7 @@ func GetCommands(adventClient *adventClient.AdventClient) []*cli.Command {
 
 				puzzle := adventClient.Puzzles[arg]
 
-				slug, err := puzzle.GetSlug()
-				if err != nil {
-					return err
-				}
-
+				slug := puzzle.GetSlug()
 				input, err := GetInput(slug)
 				if err != nil {
 					return err
@@ -100,11 +92,7 @@ func GetCommands(adventClient *adventClient.AdventClient) []*cli.Command {
 				}
 
 				puzzle := adventClient.Puzzles[arg]
-				slug, err := puzzle.GetSlug()
-				if err != nil {
-					return err
-				}
-
+				slug := puzzle.GetSlug()
 				prompt, err := GetPrompt(slug)
 				if err != nil {
 					return err

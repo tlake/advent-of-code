@@ -5,46 +5,26 @@ import (
 	"strconv"
 )
 
-type Day1Result struct {
-	Part1 string
-	Part2 string
-}
-
-func (r Day1Result) Print() {
-	fmt.Println("Day 1 results:")
-	fmt.Printf("Part 1: %s\n", r.Part1)
-	fmt.Printf("Part 2: %s\n", r.Part2)
-}
-
-type Day1Puzzle struct {
-	Title string
-	Slug  string
-}
-
-func NewDay1Puzzle() *Day1Puzzle {
-	return &Day1Puzzle{
-		Title: "Day 1: The Tyranny of the Rocket Equation",
-		Slug:  "01-tyranny-rocket-equation",
+func NewDay1Puzzle() *Puzzle {
+	return &Puzzle{
+		Title:             "Day 1: The Tyranny of the Rocket Equation",
+		Slug:              "01-tyranny-rocket-equation",
+		PuzzleSolverIface: &Day1Solver{},
 	}
 }
 
-func (p Day1Puzzle) GetTitle() (string, error) {
-	return p.Title, nil
-}
+type Day1Solver struct{}
 
-func (p Day1Puzzle) GetSlug() (string, error) {
-	return p.Slug, nil
-}
+func (s *Day1Solver) Solve(input []string) (ResultIface, error) {
+	var result Result
+	result.DayNum = 1
 
-func (p Day1Puzzle) Solve(input []string) (ResultIface, error) {
-	var result Day1Result
-
-	part1, err := p.day1part1(input)
+	part1, err := s.Part1(input)
 	if err != nil {
 		return nil, err
 	}
 
-	part2, err := p.day1part2(input)
+	part2, err := s.Part2(input)
 	if err != nil {
 		return nil, err
 	}
@@ -52,10 +32,10 @@ func (p Day1Puzzle) Solve(input []string) (ResultIface, error) {
 	result.Part1 = fmt.Sprintf("%d", part1)
 	result.Part2 = fmt.Sprintf("%d", part2)
 
-	return result, nil
+	return &result, nil
 }
 
-func (p Day1Puzzle) day1part1(input []string) (int, error) {
+func (s *Day1Solver) Part1(input []string) (int, error) {
 	var moduleMasses []int
 	var fuelRequirements []int
 	var sumFuelRequirements int
@@ -70,7 +50,7 @@ func (p Day1Puzzle) day1part1(input []string) (int, error) {
 	}
 
 	for _, mass := range moduleMasses {
-		fuelRequirements = append(fuelRequirements, calculateFuelMassOnly(mass))
+		fuelRequirements = append(fuelRequirements, s.calculateFuelMassOnly(mass))
 	}
 
 	for _, requirement := range fuelRequirements {
@@ -82,11 +62,11 @@ func (p Day1Puzzle) day1part1(input []string) (int, error) {
 
 // divide by 3, round down, subtract 2
 // golang integer division is the same as decimal FLOOR(n/d)
-func calculateFuelMassOnly(mass int) int {
+func (s *Day1Solver) calculateFuelMassOnly(mass int) int {
 	return (mass / 3) - 2
 }
 
-func (p Day1Puzzle) day1part2(input []string) (int, error) {
+func (s *Day1Solver) Part2(input []string) (int, error) {
 	var moduleMasses []int
 	var fuelRequirements []int
 	var sumFuelRequirements int
@@ -101,7 +81,7 @@ func (p Day1Puzzle) day1part2(input []string) (int, error) {
 	}
 
 	for _, mass := range moduleMasses {
-		fuelRequirements = append(fuelRequirements, calculateFuelIncludingFuel(mass))
+		fuelRequirements = append(fuelRequirements, s.calculateFuelIncludingFuel(mass))
 	}
 
 	for _, requirement := range fuelRequirements {
@@ -111,7 +91,7 @@ func (p Day1Puzzle) day1part2(input []string) (int, error) {
 	return sumFuelRequirements, nil
 }
 
-func calculateFuelIncludingFuel(mass int) int {
+func (s *Day1Solver) calculateFuelIncludingFuel(mass int) int {
 	var calculatedFuel int
 
 	calculateLoop := func() {
