@@ -1,8 +1,6 @@
-package common
+package puzzles
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestClientInitializeIntCode(t *testing.T) {
 	c := NewIntCodeClient()
