@@ -1,12 +1,68 @@
-package common
+package puzzles
 
 import (
+	"errors"
 	"log"
 	"math"
 	"sort"
 	"strconv"
 	"strings"
 )
+
+func NewDay3Puzzle() *Puzzle {
+	return &Puzzle{
+		Title:             "Day 3: Crossed Wires",
+		Slug:              "03-crossed-wires",
+		PuzzleSolverIface: &Day3Solver{},
+	}
+}
+
+type Day3Solver struct{}
+
+func (s *Day3Solver) Solve(input []string) (ResultIface, error) {
+	var result Result
+	result.DayNum = 3
+
+	part1, err := s.Part1(input)
+	if err != nil {
+		return nil, err
+	}
+
+	part2, err := s.Part2(input)
+	if err != nil {
+		return nil, err
+	}
+
+	result.Part1 = part1
+	result.Part2 = part2
+	return &result, nil
+}
+
+func (s *Day3Solver) Part1(inputs []string) (string, error) {
+	c := NewWireClient()
+	if err := c.InitializeWirePaths(inputs); err != nil {
+		return "", err
+	}
+
+	c.ProcessInstructions()
+	intResult := c.FindShortestDistance()
+	result := strconv.Itoa(intResult)
+
+	return result, nil
+}
+
+func (s *Day3Solver) Part2(inputs []string) (string, error) {
+	c := NewWireClient()
+	if err := c.InitializeWirePaths(inputs); err != nil {
+		return "", err
+	}
+
+	c.ProcessInstructions()
+	intResult := c.FindFewestSteps()
+	result := strconv.Itoa(intResult)
+
+	return result, nil
+}
 
 type WireInstruction struct {
 	Direction string
@@ -31,9 +87,9 @@ func NewWireClient() *WireClient {
 	return new(WireClient)
 }
 
-func (c *WireClient) InitializeWirePaths(pathStrings []string) {
+func (c *WireClient) InitializeWirePaths(pathStrings []string) error {
 	if len(pathStrings) != 2 {
-		log.Fatal("Client requires two path strings.")
+		return errors.New("Client requires two path strings.")
 	}
 
 	c.WireAInstructions = []WireInstruction{}
@@ -56,6 +112,8 @@ func (c *WireClient) InitializeWirePaths(pathStrings []string) {
 			}
 		}
 	}
+
+	return nil
 }
 
 func (c *WireClient) ProcessInstructions() {
